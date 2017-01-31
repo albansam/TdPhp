@@ -1,0 +1,63 @@
+{% set books_active = 1 %}
+{% extends 'layout.html.twig' %}
+
+{% block contents %}
+
+{% if sendEmprunt is defined %}
+    {% if sendEmprunt == 1 %}
+        {% if successEmprunt == 1 %}
+            <div class="alert alert-success loginsuccess">
+                L'exemplaire a bien été réservé
+            </div>
+        {% else %}
+            <div class="alert alert-warning loginsuccess">
+                Cet exemplaire est déjà réservé, ou bien vous avez des données mal formatées !
+            </div>
+        {% endif %}
+    {% endif %}
+{% endif %}
+
+
+
+    <p class="bookTitle centered">Emprunter l'exemplaire {{ empruntId }}</p>
+
+    <form class="form-inline" method="post">
+        <div class="row">
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">Exemplaire n°</div>
+                        <input type="text" class="form-control" id="copyId" name="copyId" value="{{ empruntId }}" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">Emprunté par</div>
+                        <input type="text" class="form-control" id="bookHolder" name="bookHolder">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">Date de retour</div>
+                        <input type="text" class="form-control" id="returnDate" name="returnDate" placeholder="Format : JJ/MM/AAAA">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-4">
+                <button type="submit" class="btn btn-primary centered-button">Réserver l'exemplaire</button>
+        </div>
+    </div>
+
+    </form>
+
+{% endblock %}
